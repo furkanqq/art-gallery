@@ -150,7 +150,7 @@ export default function Home() {
           style={{ translateX: RightOneValue }}
           className="text-slate-100 font-thin text-4xl w-1/2 mx-auto drop-shadow-[0px_0px_5px_rgba(189,161,108)]"
         >
-          So let's keep exploring, even Mona Lisa wants to see the next
+          So lets keep exploring, even Mona Lisa wants to see the next
           painting!
         </motion.p>
       </Section>
