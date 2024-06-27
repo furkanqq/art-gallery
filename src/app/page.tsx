@@ -3,15 +3,9 @@ import { AnimatedText } from "@/components/AnimatedText";
 import OneArtSection, { OneArtSectionProps } from "@/components/oneArtSection";
 import Section from "@/components/section";
 import { FirstFourArt } from "@/config/firstFourArt";
-import {
-  motion,
-  useAnimation,
-  useInView,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function Home() {
   const { scrollYProgress: bar } = useScroll();
@@ -118,7 +112,7 @@ export default function Home() {
         </motion.div>
       </Section>
       {FirstFourArt.map((art: OneArtSectionProps, index: number) => (
-        <OneArtSection props={art} key={index} />
+        <OneArtSection props={art} index={index} key={index} />
       ))}
       <Section
         className="flex flex-col gap-10 mb-10 justify-center items-center shadow-3xl"
@@ -150,8 +144,7 @@ export default function Home() {
           style={{ translateX: RightOneValue }}
           className="text-slate-100 font-thin text-4xl w-1/2 mx-auto drop-shadow-[0px_0px_5px_rgba(189,161,108)]"
         >
-          So lets keep exploring, even Mona Lisa wants to see the next
-          painting!
+          So lets keep exploring, even Mona Lisa wants to see the next painting!
         </motion.p>
       </Section>
       <Section className="sticky top-0 flex flex-row shadow-3xl after:cotent[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0">
@@ -159,21 +152,17 @@ export default function Home() {
           <div className="flex flex-col justify-center items-center h-1/3">
             <motion.h1
               className={`text-4xl !font-extrabold mb-2 text-fall`}
-              initial={{ y: 500, opacity: 0, scale: 1 }}
+              initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
-              whileInView={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
-              viewport={{ once: true }}
             >
               The Fall of the Damned
             </motion.h1>
             <motion.h1
               className={`text-4xl !font-extrabold mb-2 text-rubens`}
-              initial={{ y: 500, opacity: 0, scale: 1 }}
+              initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
-              whileInView={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
-              viewport={{ once: true }}
             >
               Peter Paul Rubens
             </motion.h1>
@@ -211,21 +200,17 @@ export default function Home() {
           <div className="flex flex-col justify-center items-center h-1/3">
             <motion.h1
               className={`text-4xl !font-extrabold mb-2 text-persistence`}
-              initial={{ y: 500, opacity: 0, scale: 1 }}
+              initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
-              whileInView={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
-              viewport={{ once: true }}
             >
               Persistence <span className="text-daliof">of</span> Memory
             </motion.h1>
             <motion.h1
               className={`text-4xl !font-extrabold mb-2 text-rubens`}
-              initial={{ y: 500, opacity: 0, scale: 1 }}
+              initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
-              whileInView={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
-              viewport={{ once: true }}
             >
               Peter Paul Rubens
             </motion.h1>

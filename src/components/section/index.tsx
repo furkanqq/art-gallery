@@ -5,20 +5,20 @@ export interface SectionProps {
   children: React.ReactNode;
   className?: string;
   ref?: RefObject<HTMLDivElement>;
-  key?: number;
+  index?: number;
 }
 
 export default function Section({
   children,
   className,
   ref,
-  key,
+  index,
 }: SectionProps) {
   return (
     <motion.section
       className={`h-screen w-full m-0 p-0 relative bg-black ${className}`}
       ref={ref}
-      key={key}
+      key={index}
     >
       {children}
     </motion.section>
