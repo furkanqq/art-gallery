@@ -2,10 +2,16 @@
 import { AnimatedText } from "@/components/AnimatedText";
 import OneArtSection, { OneArtSectionProps } from "@/components/oneArtSection";
 import Section from "@/components/section";
+import { Cursor } from "@/components/shared/cursor";
 import { FirstFourArt } from "@/config/firstFourArt";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Home() {
   const { scrollYProgress: bar } = useScroll();
@@ -21,6 +27,9 @@ export default function Home() {
 
   const RightOneValue = useTransform(scrollYProgress, [0, 1], ["100%", "-20%"]);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [magnetActive, setMagnetActive] = useState(false);
+
   return (
     <main>
       <motion.div
@@ -30,6 +39,102 @@ export default function Home() {
           transformOrigin: "left",
         }}
       ></motion.div>
+      <Cursor hideCursor={magnetActive} />
+      <header className="absolute inset-x-0 top-0 flex items-center justify-between px-[5%] py-4 lg:py-12 z-[999]">
+        {isMenuOpen ? (
+          <>
+            <Image
+              src={
+                "https://res.cloudinary.com/ddfqedsqq/image/upload/v1718312521/white_logo.png"
+              }
+              alt="logo"
+              width={160}
+              height={40}
+              className="absolute object-contain left-28"
+            />
+            <div></div>
+          </>
+        ) : (
+          <div></div>
+        )}
+
+        <button
+          className={`relative w-14 h-14 bg-zinc-800/30 hover:bg-zinc-800/80 rounded-full flex flex-col items-center transition-all duration-300 justify-center ${
+            !isMenuOpen ? "gap-y-1" : ""
+          }`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onPointerEnter={() => setMagnetActive(true)}
+          onPointerLeave={() => setMagnetActive(false)}
+        >
+          <span
+            className={`h-[2px] transition-all duration-300 bg-zinc-300 z-[10] ${
+              !isMenuOpen ? "w-7" : "w-6 mb-[-1px] rotate-45"
+            }`}
+          ></span>
+          <span
+            className={`h-[2px] transition-all duration-300 bg-zinc-300 z-[10] ${
+              !isMenuOpen ? "w-7" : "w-6 mt-[-1px] -rotate-45"
+            }`}
+          ></span>
+          {magnetActive ? (
+            <motion.div
+              layoutId="cursor"
+              className="absolute inset-0 bg-orange-500 rounded-full"
+            ></motion.div>
+          ) : null}
+        </button>
+        <motion.nav
+          transition={{
+            type: "spring",
+            damping: 100,
+            stiffness: 500,
+          }}
+          initial={{
+            y: "-100%",
+          }}
+          animate={{
+            y: !isMenuOpen ? "-100%" : "0%",
+          }}
+          className="fixed inset-0 bg-zinc-900/80 backdrop-blur z-[-1]"
+        >
+          <div className="flex h-full">
+            <div className="flex px-[5%] flex-col justify-center h-full gap-4 ">
+              <a
+                className="text-5xl hover:text-potato cursor-pointer active:scale-[0.97]"
+                href="https://www.linkedin.com/in/furkan-ilhan/"
+                target="_blank"
+              >
+                Linkedin
+              </a>
+              <a
+                className="text-5xl hover:text-potato cursor-pointer active:scale-[0.97]"
+                href="https://www.instagram.com/llhanfurkan/"
+                target="_blank"
+              >
+                Instagram
+              </a>
+              <a
+                className="text-5xl hover:text-potato cursor-pointer active:scale-[0.97]"
+                href="https://x.com/1Furkanilhan"
+                target="_blank"
+              >
+                Twitter
+              </a>
+              <a
+                className="text-5xl hover:text-potato cursor-pointer active:scale-[0.97]"
+                href="https://www.furkanilhan.com/"
+                target="_blank"
+              >
+                Portfolio
+              </a>
+            </div>
+            <div className="flex border-l-2 border-stone-700 px-[5%] w-full items-center text-3xl">
+              Hello! I am Furkan İlhan. Web developer with 2 years experience
+              living in Istanbul and working with Balance Network.
+            </div>
+          </div>
+        </motion.nav>
+      </header>
       <Section className="!sticky top-0 z-0 grid grid-cols-3 gap-8 p-8 h-full">
         <motion.div className="relative h-full flex flex-col justify-end gap-4">
           <motion.h1
@@ -100,15 +205,6 @@ export default function Home() {
             Furkan İlhan <br />
             The Anyone
           </motion.h1>
-          <Image
-            src={
-              "https://res.cloudinary.com/ddfqedsqq/image/upload/v1718312521/white_logo.png"
-            }
-            alt="logo"
-            width={120}
-            height={20}
-            className="absolute -bottom-4 right-0"
-          />
         </motion.div>
       </Section>
       {FirstFourArt.map((art: OneArtSectionProps, index: number) => (
@@ -222,6 +318,9 @@ export default function Home() {
             }
           />
         </div>
+      </Section>
+      <Section>
+        <div className="border border-red-500 h-screen"></div>
       </Section>
     </main>
   );
