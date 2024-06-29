@@ -15,6 +15,19 @@ export const FirstFourArt: OneArtSectionProps[] = [
     descriptionTextColor: "dirty_white",
   },
   {
+    name: "The Last Supper",
+    artist: "Leonardo da Vinci",
+    image:
+      "https://res.cloudinary.com/ddfqedsqq/image/upload/v1718312521/supper.webp",
+    title: "The Last Supper (Leonardo da Vinci)",
+    description:
+      "The Last Supper is a mural painting by the Italian High Renaissance artist Leonardo da Vinci, dated to c. 1495–1498, housed in the refectory of the Convent of Santa Maria delle Grazie in Milan, Italy. The painting represents the scene of the Last Supper of Jesus with the Twelve Apostles, as it is told in the Gospel of John – specifically the moment after Jesus announces that one of his apostles will betray him. Its handling of space, mastery of perspective, treatment of motion and complex display of human emotion has made it one of the Western world's most recognizable paintings and among Leonardo's most celebrated works. Some commentators consider it pivotal in inaugurating the transition into what is now termed the High Renaissance. The work was commissioned as part of a plan of renovations to the church and its convent buildings by Leonardo's patron Ludovico Sforza, Duke of Milan. In order to permit his inconsistent painting schedule and frequent revisions, it is painted with materials that allowed for regular alterations: tempera on gesso, pitch, and mastic. Due to the methods used, a variety of environmental factors, and intentional damage, little of the original painting remains today despite numerous restoration attempts, the last being completed in 1999. The Last Supper is Leonardo's largest work, aside from the Sala delle Asse.",
+    nameColor: "brown",
+    artistColor: "detail",
+    descriptionColor: "brown",
+    descriptionTextColor: "dirty_white",
+  },
+  {
     name: "Nighthawks",
     artist: "Edward Hopper",
     image:

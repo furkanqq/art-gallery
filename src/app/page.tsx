@@ -4,6 +4,7 @@ import OneArtSection, { OneArtSectionProps } from "@/components/oneArtSection";
 import Section from "@/components/section";
 import { Cursor } from "@/components/shared/cursor";
 import { FirstFourArt } from "@/config/firstFourArt";
+import { LayoutGallery } from "@/config/layoutGallery";
 import {
   AnimatePresence,
   motion,
@@ -29,6 +30,19 @@ export default function Home() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [magnetActive, setMagnetActive] = useState(false);
+
+  const [selectedId, setSelectedId] = useState<any>(null);
+
+  const text = "Gallery";
+
+  const defaultAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
+  };
 
   return (
     <main>
@@ -281,7 +295,7 @@ export default function Home() {
           />
         </div>
       </Section>
-      <Section className="sticky top-0 flex flex-row shadow-3xl after:cotent[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0">
+      <Section className="sticky top-0 flex flex-row shadow-3xl after:cotent[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0 mb-[72px]">
         <div className="relative flex justify-center items-center z-10 w-[65%] h-full after:content-[''] after:bg-black after:w-full after:h-screen after:opacity-40">
           <Image
             src={
@@ -319,8 +333,80 @@ export default function Home() {
           />
         </div>
       </Section>
-      <Section>
-        <div className="border border-red-500 h-screen"></div>
+
+      <Section className="flex justify-center items-center !h-[200vh]">
+        <div className="absolute h-[72px] w-full top-[-72px] bg-black flex justify-center items-center pt-8">
+          <motion.span
+            initial="hidden"
+            whileInView="visible"
+            transition={{
+              staggerChildren: 0.2,
+            }}
+            aria-hidden
+          >
+            {text.split("").map((letter, index) => (
+              <motion.span
+                variants={defaultAnimation}
+                key={index}
+                className="text-6xl text-white"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </motion.span>
+        </div>
+        <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-4 gap-20 h-full w-full p-24">
+          {LayoutGallery.map((art, index) => (
+            <motion.div
+              key={index}
+              layoutId={index.toString()}
+              onClick={() => setSelectedId(index)}
+              className={`relative h-[300px] rounded-lg overflow-hidden cursor-zoom-in ${
+                index === 0 || index === 3 || index === 4 || index === 7
+                  ? "col-span-2"
+                  : ""
+              }`}
+            >
+              <Image
+                src={art.image}
+                alt={art.name}
+                fill
+                objectFit="cover"
+                objectPosition={index === 0 || index === 5 ? "top" : "center"}
+                className="brightness-[0.65]"
+              />
+            </motion.div>
+          ))}
+
+          <AnimatePresence>
+            {selectedId !== null && (
+              <motion.div
+                layoutId={selectedId.toString()}
+                className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 cursor-zoom-out"
+              >
+                <motion.div
+                  className="relative h-[100vh] w-[100vw] bg-[rgba(0,0,0,0.40)] backdrop-blur-lg overflow-hidden"
+                  onClick={() => setSelectedId(null)}
+                >
+                  <Image
+                    src={LayoutGallery[selectedId].image}
+                    alt={LayoutGallery[selectedId].name}
+                    fill
+                    objectFit={"contain"}
+                    className="brightness-75"
+                    objectPosition={
+                      selectedId === 5 || selectedId === 6 ? "top" : "center"
+                    }
+                  />
+                  <motion.h4 className="text-black absolute top-10 left-20 text-2xl bg-potato p-4 rounded-md">
+                    {LayoutGallery[selectedId].name} by{" "}
+                    {LayoutGallery[selectedId].artist}
+                  </motion.h4>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </Section>
     </main>
   );
