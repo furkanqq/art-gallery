@@ -1,6 +1,6 @@
 import { OneArtSectionProps } from "@/components/oneArtSection";
 
-export const FirstFourArt: OneArtSectionProps[] = [
+export const FirstFiveArt: OneArtSectionProps[] = [
   {
     name: "The Creation of Adam",
     artist: "Michelangelo",

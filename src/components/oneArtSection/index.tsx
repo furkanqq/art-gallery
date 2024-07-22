@@ -29,9 +29,9 @@ const OneArtSection = ({
       <motion.div className="overflow-hidden after:absolute after:content-[''] after:bg-black after:w-full after:h-screen after:opacity-40">
         <Image src={props.image} alt={props.title} fill objectFit="cover" />
       </motion.div>
-      <motion.div className="flex flex-col items-end absolute top-[20%] z-0 w-[42%]">
+      <motion.div className="flex flex-col items-end absolute top-[20%] left-[10%] sm:left-0 z-0 w-[42%]">
         <motion.h1
-          className={`text-4xl !font-extrabold mb-2 !text-${props.nameColor}`}
+          className={`text-2xl sm:text-4xl !font-extrabold mb-2 !text-${props.nameColor}`}
           initial={{ y: 500, opacity: 0, scale: 1 }}
           whileHover={{ scale: 1.1 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -41,7 +41,7 @@ const OneArtSection = ({
           {props.name}
         </motion.h1>
         <motion.p
-          className={`text-${props.artistColor} text-xl`}
+          className={`text-${props.artistColor} text-l sm:text-xl`}
           initial={{ y: 500, opacity: 0, scale: 1 }}
           whileHover={{ scale: 1.1 }}
           whileInView={{ y: 0, opacity: 1 }}

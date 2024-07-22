@@ -3,7 +3,7 @@ import { AnimatedText } from "@/components/AnimatedText";
 import OneArtSection, { OneArtSectionProps } from "@/components/oneArtSection";
 import Section from "@/components/section";
 import { Cursor } from "@/components/shared/cursor";
-import { FirstFourArt } from "@/config/firstFourArt";
+import { FirstFiveArt } from "@/config/firstFiveArt";
 import { LayoutGallery } from "@/config/layoutGallery";
 import {
   AnimatePresence,
@@ -149,7 +149,7 @@ export default function Home() {
           </div>
         </motion.nav>
       </header>
-      <Section className="!sticky top-0 z-0 grid grid-cols-3 gap-8 p-8 h-full">
+      <Section className="!sticky top-0 z-0 grid grid-rows-5 sm:grid-rows-1 sm:grid-cols-3 gap-8 p-8 h-full ">
         <motion.div className="relative h-full flex flex-col justify-end gap-4">
           <motion.h1
             className="text-7xl font-semibold text-detail"
@@ -161,7 +161,7 @@ export default function Home() {
             My Little Gallery
           </motion.h1>
           <motion.div
-            className="relative h-3/5"
+            className="relative h-3/5 hidden sm:block"
             initial={{ y: 500, opacity: 0, scale: 1 }}
             whileHover={{ scale: 1.03 }}
             animate={{ y: 0, opacity: 1 }}
@@ -173,10 +173,11 @@ export default function Home() {
               }
               alt="girl"
               fill
+              objectFit="cover"
             />
           </motion.div>
         </motion.div>
-        <motion.div className="relative h-full flex flex-col justify-center">
+        <motion.div className="relative h-full flex row-span-3 flex-col justify-center">
           <motion.div
             className="relative h-[90%]"
             initial={{ y: 1000, opacity: 0, scale: 1 }}
@@ -190,12 +191,14 @@ export default function Home() {
               }
               alt="wedding"
               fill
+              objectFit="cover"
+              className="object-top sm:object-center"
             />{" "}
           </motion.div>
         </motion.div>
         <motion.div className="relative h-full flex flex-col justify-start gap-4">
           <motion.div
-            className="relative h-3/5"
+            className="relative h-3/5 hidden sm:block"
             initial={{ y: 1500, opacity: 0, scale: 1 }}
             whileHover={{ scale: 1.03 }}
             animate={{ y: 0, opacity: 1 }}
@@ -207,6 +210,7 @@ export default function Home() {
               }
               alt="tiger"
               fill
+              objectFit="cover"
             />{" "}
           </motion.div>
           <motion.h1
@@ -221,7 +225,7 @@ export default function Home() {
           </motion.h1>
         </motion.div>
       </Section>
-      {FirstFourArt.map((art: OneArtSectionProps, index: number) => (
+      {FirstFiveArt.map((art: OneArtSectionProps, index: number) => (
         <OneArtSection props={art} index={index} key={index} />
       ))}
       <Section
