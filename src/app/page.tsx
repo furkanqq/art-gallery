@@ -143,8 +143,9 @@ export default function Home() {
               </a>
             </div>
             <div className="flex border-l-2 border-stone-700 px-[5%] w-full items-center text-3xl">
-              Hello! I am Furkan İlhan. Web developer with 2 years experience
-              living in Istanbul and working with Balance Network.
+              I develop modern and high-performance web solutions, focusing on
+              user experience and efficiency to create innovative digital
+              projects. I am a Web Developer.
             </div>
           </div>
         </motion.nav>
