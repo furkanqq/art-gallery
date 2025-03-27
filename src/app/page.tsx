@@ -222,7 +222,7 @@ export default function Home() {
             transition={{ ease: "easeOut", duration: 1.2 }}
           >
             Furkan İlhan <br />
-            The Anyone
+            The Special One
           </motion.h1>
         </motion.div>
       </Section>
