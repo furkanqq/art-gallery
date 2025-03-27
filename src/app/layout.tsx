@@ -17,9 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={chakraPetch.className}>
-        {children}
-      </body>
+      <head>
+        <link rel="icon" href="/logo.png" sizes="32x32" />
+        <link rel="icon" href="/logo.png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+      </head>
+      <body className={chakraPetch.className}>{children}</body>
     </html>
   );
 }
