@@ -18,7 +18,7 @@ export const AnimatedText = ({ text }: { text: string }) => {
 
   return (
     <p
-      className="text-center text-dirty_white font-bold text-lg px-12"
+      className="text-center text-dirty_white font-bold text-sm md:text-lg px-3 md:px-12"
       ref={ref}
       style={{ flexWrap: "wrap", whiteSpace: "pre-wrap" }}
     >

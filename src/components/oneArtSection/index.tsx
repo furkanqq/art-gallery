@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Section from "../section";
 import Image from "next/image";
-import { cn } from "@/utils/cn";
 
 export interface OneArtSectionProps {
   image: string;
@@ -23,7 +22,21 @@ const OneArtSection = ({
   props: OneArtSectionProps;
   index: number;
 }) => {
-  console.log(props.descriptionColor, "props.descriptionColor");
+  const [screenWidth, setScreenWidth] = useState(600); // Varsayılan genişlik
+
+  useEffect(() => {
+    if (window.innerWidth < 640) {
+      const updateWidth = () => {
+        setScreenWidth(window.innerWidth - 50);
+      };
+
+      updateWidth(); // İlk yüklenme anında ayarla
+      window.addEventListener("resize", updateWidth);
+
+      return () => window.removeEventListener("resize", updateWidth);
+    }
+  }, []);
+
   return (
     <Section className="!sticky top-0 z-0 shadow-3xl" index={index} key={index}>
       <motion.div className="overflow-hidden after:absolute after:content-[''] after:bg-black after:w-full after:h-screen after:opacity-40">
@@ -52,16 +65,21 @@ const OneArtSection = ({
         </motion.p>
       </motion.div>
       <motion.div
-        drag={"x"}
-        dragConstraints={{ left: 0, right: 600 }}
+        drag="x"
+        dragConstraints={{ left: 0, right: screenWidth }}
         dragTransition={{ bounceStiffness: 400, bounceDamping: 15 }}
-        className={`absolute items-center w-screen h-screen left-[-99.5vw] cursor-pointer after:content-['']  after:w-[28px] after:h-[28px] after:absolute after:right-[-14px] after:rotate-[45deg] after:top-[50%] after:-translate-y-1/2 after:z-10 before:content-['Pull'] before:text-dirty_white before:opacity-50  before:w-fit  before:h-[28px] before:absolute before:right-[-50px] before:top-[50.3%] before:-translate-y-1/2 before:z-10 after:bg-[rgba(0,0,0,0.5)] bg-[rgba(0,0,0,0.5)] backdrop-blur-lg`}
+        className={`absolute items-center w-screen h-screen left-[-99.5vw] cursor-pointer 
+        after:content-[''] after:w-[28px] after:h-[28px] after:absolute after:right-[-14px] 
+        after:rotate-[45deg] after:top-[50%] after:-translate-y-1/2 after:z-10 
+        before:content-['Pull'] before:text-dirty_white before:opacity-50 before:w-fit 
+        before:h-[28px] before:absolute before:right-[-50px] before:top-[50.3%] before:-translate-y-1/2 before:z-10 
+        after:bg-[rgba(0,0,0,0.5)] bg-[rgba(0,0,0,0.5)] backdrop-blur-lg`}
       >
         <div
-          className={`absolute right-0 w-[600px] px-12 py-20 text-${props.descriptionTextColor} h-full overflow-scroll`}
+          className={`absolute right-0 ml-3 md:w-[600px] px-12 py-20 text-${props.descriptionTextColor} h-full overflow-scroll`}
         >
           <h1 className="text-2xl font-extrabold mb-6">{props.title}</h1>
-          <p>{props.description}</p>
+          <p className="text-sm md:text-base">{props.description}</p>
         </div>
       </motion.div>
     </Section>

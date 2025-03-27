@@ -152,7 +152,7 @@ export default function Home() {
       <Section className="!sticky top-0 z-0 grid grid-rows-5 sm:grid-rows-1 sm:grid-cols-3 gap-8 p-8 h-full ">
         <motion.div className="relative h-full flex flex-col justify-end gap-4">
           <motion.h1
-            className="text-7xl font-semibold text-detail"
+            className="text-5xl md:text-7xl font-semibold text-detail"
             initial={{ y: 500, opacity: 0, scale: 1 }}
             whileHover={{ scale: 1.03 }}
             animate={{ y: 0, opacity: 1 }}
@@ -229,7 +229,7 @@ export default function Home() {
         <OneArtSection props={art} index={index} key={index} />
       ))}
       <Section
-        className="flex flex-col gap-10 mb-10 justify-center items-center shadow-3xl"
+        className="hidden md:flex flex-col gap-10 mb-10 justify-center items-center shadow-3xl"
         ref={containerRef}
       >
         <motion.h1
@@ -261,11 +261,11 @@ export default function Home() {
           So lets keep exploring, even Mona Lisa wants to see the next painting!
         </motion.p>
       </Section>
-      <Section className="sticky top-0 flex flex-row shadow-3xl after:cotent[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0">
-        <div className="relative flex flex-col items-center z-10  w-[50%] h-full">
-          <div className="flex flex-col justify-center items-center h-1/3">
+      <Section className="sticky top-0 flex flex-col-reverse md:flex-row shadow-3xl after:content[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0">
+        <div className="relative flex flex-col items-center z-10 w-full md:w-[50%] h-full">
+          <div className="flex flex-col justify-center items-center h-1/5 md:h-1/3">
             <motion.h1
-              className={`text-4xl !font-extrabold mb-2 text-fall`}
+              className={`text-2xl md:text-4xl !font-extrabold mb-2 text-fall`}
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
@@ -273,7 +273,7 @@ export default function Home() {
               The Fall of the Damned
             </motion.h1>
             <motion.h1
-              className={`text-4xl !font-extrabold mb-2 text-rubens`}
+              className={`text-2xl md:text-4xl !font-extrabold mb-0 md:mb-2 text-rubens`}
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
@@ -288,7 +288,7 @@ export default function Home() {
             }
           />
         </div>
-        <div className="relative flex justify-center items-center z-10 w-[50%] h-full after:content-[''] after:bg-black after:w-full after:h-screen after:opacity-40">
+        <div className="relative flex justify-center items-center z-10 w-full md:w-[50%] h-[30%] md:h-full after:content-[''] after:bg-black after:w-full after:h-screen after:md:opacity-40 after:opacity-0">
           <Image
             src={
               "https://res.cloudinary.com/ddfqedsqq/image/upload/v1718312521/fall.jpg"
@@ -299,8 +299,8 @@ export default function Home() {
           />
         </div>
       </Section>
-      <Section className="sticky top-0 flex flex-row shadow-3xl after:cotent[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0 mb-[72px]">
-        <div className="relative flex justify-center items-center z-10 w-[65%] h-full after:content-[''] after:bg-black after:w-full after:h-screen after:opacity-40">
+      <Section className="hidden sticky top-0 md:flex flex-col md:flex-row shadow-3xl after:cotent[''] after:absolute after:w-full after:h-full after:bg-[url('/pattern.png')] after:-z-0 mb-[72px]">
+        <div className="relative flex justify-center items-center z-10 w-full md:w-[65%] h-full after:content-[''] after:bg-black after:w-full after:h-screen after:opacity-40">
           <Image
             src={
               "https://res.cloudinary.com/ddfqedsqq/image/upload/v1718312521/bellegin.jpg"
@@ -310,10 +310,10 @@ export default function Home() {
             objectFit="contain"
           />
         </div>
-        <div className="relative flex flex-col items-center z-10 w-[35%] h-full">
-          <div className="flex flex-col justify-center items-center h-1/3">
+        <div className="relative flex flex-col items-center z-10 w-full md:w-[35%] h-full">
+          <div className="flex flex-col justify-center items-center h-1/5 md:h-1/3 ">
             <motion.h1
-              className={`text-4xl !font-extrabold mb-2 text-persistence`}
+              className={`text-2xl md:text-4xl !font-extrabold mb-2 text-persistence`}
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
@@ -321,7 +321,7 @@ export default function Home() {
               Persistence <span className="text-daliof">of</span> Memory
             </motion.h1>
             <motion.h1
-              className={`text-4xl !font-extrabold mb-2 text-rubens`}
+              className={`text-2xl md:text-4xl !font-extrabold mb-2 text-rubens`}
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
               transition={{ ease: "easeOut", duration: 0.4 }}
@@ -359,7 +359,7 @@ export default function Home() {
             ))}
           </motion.span>
         </div>
-        <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-4 gap-20 h-full w-full p-24">
+        <div className="grid md:grid-flow-row-dense grid-cols-1 md:grid-cols-3 md:grid-rows-4 gap-10 md:gap-20 h-full w-full p-10 md:p-24">
           {LayoutGallery.map((art, index) => (
             <motion.div
               key={index}
@@ -367,7 +367,7 @@ export default function Home() {
               onClick={() => setSelectedId(index)}
               className={`relative h-[300px] rounded-lg overflow-hidden cursor-zoom-in ${
                 index === 0 || index === 3 || index === 4 || index === 7
-                  ? "col-span-2"
+                  ? "md:col-span-2"
                   : ""
               }`}
             >
@@ -402,7 +402,7 @@ export default function Home() {
                       selectedId === 5 || selectedId === 6 ? "top" : "center"
                     }
                   />
-                  <motion.h4 className="text-black absolute top-10 left-20 text-2xl bg-potato p-4 rounded-md">
+                  <motion.h4 className="text-black absolute top-10 left-20 text-base md:text-2xl bg-potato p-4 rounded-md">
                     {LayoutGallery[selectedId].name} by{" "}
                     {LayoutGallery[selectedId].artist}
                   </motion.h4>
